@@ -28,15 +28,16 @@ pub fn part_two(input: &str) -> Option<u32> {
             .trim_end()
             .split('\n')
             .map(|f| {
-                let str = f.replace("one", "o1e");
-                let str = str.replace("two", "t2o");
-                let str = str.replace("three", "t3e");
-                let str = str.replace("four", "4");
-                let str = str.replace("five", "5e");
-                let str = str.replace("six", "6");
-                let str = str.replace("seven", "7");
-                let str = str.replace("eight", "e8t");
-                let str = str.replace("nine", "9");
+                let str = f
+                    .replace("one", "o1e")
+                    .replace("two", "t2o")
+                    .replace("three", "t3e")
+                    .replace("four", "4")
+                    .replace("five", "5e")
+                    .replace("six", "6")
+                    .replace("seven", "7")
+                    .replace("eight", "e8t")
+                    .replace("nine", "9");
                 let str = re.replace_all(&str, "");
                 format!(
                     "{}{}",
