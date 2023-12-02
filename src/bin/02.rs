@@ -9,14 +9,14 @@ pub fn part_one(input: &str) -> Option<u32> {
     let mut total_sum = 0;
     let lines = input.trim_end().split('\n');
     lines.for_each(|l| {
-        let mut game_def = l.split(':').into_iter();
+        let mut game_def = l.split(':');
         let number = game_def.next().unwrap();
         let games: std::str::Split<'_, char> = game_def.next().unwrap().split(';');
         let mut is_valid_game = true;
         games.for_each(|inner_game| {
-            let round = inner_game.split(',').into_iter();
+            let round = inner_game.split(',');
             round.for_each(|inner_game| {
-                let mut inner_game = inner_game.split(' ').into_iter().skip(1);
+                let mut inner_game = inner_game.split(' ').skip(1);
                 let amount: u32 = inner_game.next().unwrap().parse().unwrap();
                 let color = inner_game.next().unwrap();
                 let max = match color {
@@ -31,8 +31,7 @@ pub fn part_one(input: &str) -> Option<u32> {
         });
         if is_valid_game {
             total_sum += number
-                .split(" ")
-                .into_iter()
+                .split(' ')
                 .nth(1)
                 .unwrap()
                 .parse::<u32>()
@@ -46,15 +45,15 @@ pub fn part_two(input: &str) -> Option<u32> {
     let mut total_sum = 0;
     let lines = input.trim_end().split('\n');
     lines.for_each(|l| {
-        let mut game_def = l.split(':').into_iter();
+        let mut game_def = l.split(':');
         let games = game_def.nth(1).unwrap().split(';');
         let mut max_red = 0;
         let mut max_green = 0;
         let mut max_blue = 0;
         games.for_each(|inner_game| {
-            let round = inner_game.split(',').into_iter();
+            let round = inner_game.split(',');
             round.for_each(|inner_game| {
-                let mut inner_game = inner_game.split(' ').into_iter().skip(1);
+                let mut inner_game = inner_game.split(' ').skip(1);
                 let amount: u32 = inner_game.next().unwrap().parse().unwrap();
                 let color = inner_game.next().unwrap();
                 match color {
