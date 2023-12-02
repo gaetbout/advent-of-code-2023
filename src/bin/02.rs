@@ -30,12 +30,7 @@ pub fn part_one(input: &str) -> Option<u32> {
             });
         });
         if is_valid_game {
-            total_sum += number
-                .split(' ')
-                .nth(1)
-                .unwrap()
-                .parse::<u32>()
-                .unwrap();
+            total_sum += number.split(' ').nth(1).unwrap().parse::<u32>().unwrap();
         }
     });
     Some(total_sum)
