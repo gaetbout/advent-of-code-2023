@@ -20,16 +20,11 @@ pub fn part_one(input: &str) -> Option<u32> {
 }
 
 fn find_around(row: usize, column: usize, data: &[Vec<char>]) -> u32 {
-    // println!(
-    //     "row: {} column: {} el: {:?}",
-    //     row, column, data[row][column]
-    // );
     let mut resp = HashSet::new();
 
     for x in row - 1..row + 2 {
         for y in column - 1..column + 2 {
             if data[x][y].is_ascii_digit() {
-                // println!("row: {} column: {} el: {:?}", x, y, data[x][y]);
                 resp.insert(read_number(x, y, data));
             }
         }
@@ -60,9 +55,6 @@ fn read_number(row: usize, column: usize, data: &[Vec<char>]) -> u32 {
         }
         local_colum_end += 1;
     }
-
-    // println!("ROW {}", row);
-    // println!("start {} end {}", local_colum_start, local_colum_end);
 
     let mut res = 0;
     for x in row_data
