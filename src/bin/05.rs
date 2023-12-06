@@ -60,6 +60,8 @@ fn parse_map(lines: Split<'_, char>) -> Vec<Vec<Map>> {
 }
 
 // There is prob a way to make it more efficient, but I just left it running for ~50mn
+// Could use a range instead of adding each map item
+// Could split in thread as none can be blocking each other
 pub fn part_two(input: &str) -> Option<u32> {
     let mut lines = input.trim_end().split('\n');
     let numbers: Vec<u32> = lines
