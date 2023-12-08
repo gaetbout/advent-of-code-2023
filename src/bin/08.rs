@@ -8,7 +8,7 @@ pub fn part_one(input: &str) -> Option<u32> {
     let directions: Vec<char> = lines.next().unwrap().chars().collect();
 
     let mut instructions: HashMap<(&str, char), &str> = HashMap::new();
-    for l in lines.skip(1).into_iter() {
+    for l in lines.skip(1) {
         let mut l_split = l.split('=');
         let key = &(l_split.next().unwrap())[0..3];
         let l_r = l_split.next().unwrap();
@@ -33,7 +33,7 @@ pub fn part_two(input: &str) -> Option<u64> {
 
     let mut keys = vec![];
     let mut instructions: HashMap<(&str, char), &str> = HashMap::new();
-    for l in lines.skip(1).into_iter() {
+    for l in lines.skip(1) {
         let mut l_split = l.split('=');
         let key = &(l_split.next().unwrap())[0..3];
         if key.ends_with('A') {
