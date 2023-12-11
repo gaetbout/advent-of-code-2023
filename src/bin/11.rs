@@ -6,13 +6,13 @@ pub fn part_one(input: &str) -> Option<u128> {
     do_logic(input, 2)
 }
 
-fn get_coords(image: &Vec<Vec<char>>) -> Vec<(u128, u128)> {
+fn get_coords(image: &[Vec<char>]) -> Vec<(u128, u128)> {
     let mut coords = vec![];
-    for row in 0..image.len() {
-        let len = image[row].len();
-        for col in 0..len {
-            if image[row][col] != '.' {
-                coords.push((row as u128, col as u128));
+    for (row_idx, row) in image.iter().enumerate() {
+        let len = image[row_idx].len();
+        for (col_idx, col) in row.iter().enumerate().take(len) {
+            if *col != '.' {
+                coords.push((row_idx as u128, col_idx as u128));
             }
         }
     }
@@ -27,18 +27,18 @@ fn do_logic(input: &str, expansion: u128) -> Option<u128> {
         .collect();
     let mut rows = vec![];
     let mut cols = vec![];
-    for row in 0..image.len() {
-        if image[row].iter().all(|c| *c == '.') {
-            rows.push(row);
+    for (row_idx, item) in image.iter().enumerate() {
+        if item.iter().all(|c| *c == '.') {
+            rows.push(row_idx);
         }
         let mut is_valid = true;
-        for col in 0..image.len() {
-            if image[col][row] == '#' {
+        for row in image.iter() {
+            if row[row_idx] == '#' {
                 is_valid = false;
             }
         }
         if is_valid {
-            cols.push(row);
+            cols.push(row_idx);
         }
     }
     let coords = get_coords(&image);
@@ -46,10 +46,9 @@ fn do_logic(input: &str, expansion: u128) -> Option<u128> {
     let mut exp_tot = 0;
     for x in 0..coords.len() {
         let (curr_x, curr_y) = coords[x];
-        for y in x + 1..coords.len() {
-            let (next_x, next_y) = coords[y];
-            let (min_x, max_x) = min_max(curr_x, next_x);
-            let (min_y, max_y) = min_max(curr_y, next_y);
+        for (next_x, next_y) in coords.iter().skip(x + 1) {
+            let (min_x, max_x) = min_max(curr_x, *next_x);
+            let (min_y, max_y) = min_max(curr_y, *next_y);
             let x_range = min_x..max_x;
             let y_range = min_y..max_y;
             for row in rows.clone() {
