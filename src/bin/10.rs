@@ -289,7 +289,7 @@ pub fn part_two(input: &str) -> Option<u32> {
     }
 
     // Bit ugly but works out :D
-    // Could do a walking allgortihm instead
+    // Could do a walking algorithm instead
     for _ in 1..100 {
         for row in 1..(rows) {
             for col in 1..(cols) {
