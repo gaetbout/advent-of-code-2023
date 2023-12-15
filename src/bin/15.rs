@@ -25,7 +25,7 @@ pub fn part_two(input: &str) -> Option<u32> {
     for x in input.trim_end().split(',') {
         let to_hash = alpha_re.find(x).unwrap().as_str();
         let box_number = get_hash(to_hash);
-        let current_value = lens_boxes.entry(box_number).or_insert(vec![]);
+        let current_value = lens_boxes.entry(box_number).or_default();
 
         if x.contains('=') {
             let lens_size: u32 = x.split('=').last().unwrap().parse().unwrap();
