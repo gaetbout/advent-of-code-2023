@@ -62,7 +62,7 @@ fn rotate(pattern: &[Vec<char>]) -> Vec<Vec<char>> {
 // Just had to make
 // 1,000,000,000 % loop size (in my case 52)
 // gives 12
-// Then I leave the program running like 550 times and take the correct run:
+// Then I leave the program running like 500 times and take the correct run:
 // Response was at loop 520 - 1 + 12 => 531 = > 100310 (Why minus one? Because we start at zero)
 pub fn part_two(input: &str) -> Option<u32> {
     let mut board: Vec<Vec<char>> = input
