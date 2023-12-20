@@ -45,7 +45,7 @@ pub fn part_one(input: &str) -> Option<u32> {
         let mut all = line.split_ascii_whitespace();
         let first = all.next().unwrap();
         all.next();
-        let outputs = all.map(|e| e.replace(",", "")).collect();
+        let outputs = all.map(|e| e.replace(',', "")).collect();
         let module_type = if first.contains('%') {
             ModuleType::FlipFlop(false)
         } else if first.contains('&') {
@@ -64,7 +64,7 @@ pub fn part_one(input: &str) -> Option<u32> {
             if let Some(module) = modules.iter().find(|m| m.name.eq(output)) {
                 if module.module_type == ModuleType::Conjunction {
                     let size = conj_memory_size.entry(output.clone()).or_default();
-                    *size = *size + 1;
+                    *size += 1;
                 }
             }
         }
@@ -151,7 +151,7 @@ pub fn part_one(input: &str) -> Option<u32> {
     Some(low * high)
 }
 
-pub fn part_two(input: &str) -> Option<u32> {
+pub fn part_two(_input: &str) -> Option<u32> {
     None
 }
 
